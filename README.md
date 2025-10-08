@@ -1,1 +1,1 @@
-# svet
+# NkortaQR
