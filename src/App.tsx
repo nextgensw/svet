@@ -27,6 +27,7 @@ import { Settings } from './pages/Settings'
 import { Motors } from './pages/Reference/Motors'
 import { Counterparties } from './pages/Reference/Counterparties'
 import { Subdivisions } from './pages/Reference/Subdivisions'
+import { MotorDetails } from './pages/Motors/MotorDetails'
 
 function App() {
   return (
@@ -54,6 +55,8 @@ function App() {
             <Route path="reference/motors" element={<Motors />} />
             <Route path="reference/counterparties" element={<Counterparties />} />
             <Route path="reference/subdivisions" element={<Subdivisions />} />
+            {/* Motor Details */}
+            <Route path="motors/:id" element={<MotorDetails />} />
           </Route>
 
           {/* UPD Routes (outside app layout) */}

@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { ChevronDown, ChevronRight, CreditCard as Edit2, Copy, Trash2, Plus, X, Bookmark, Search } from 'lucide-react'
+import { ChevronDown, ChevronRight, CreditCard as Edit2, Copy, Trash2, Plus, X, Bookmark, Search, QrCode } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Input } from '../ui/Input'
 import { CounterpartySelectionModal } from '../Acceptance/CounterpartySelectionModal'
 import { Counterparty } from '../../services/counterpartyService'
+import { useNavigate } from 'react-router-dom'
 
 const formatDate = (dateString: string): string => {
   const date = new Date(dateString)
@@ -509,6 +510,7 @@ const MotorGroup: React.FC<MotorGroupProps> = ({
   onAddItemToGroup,
   onSaveAsTemplate,
 }) => {
+  const navigate = useNavigate()
   const [isExpanded, setIsExpanded] = useState(true)
   const [isEditingServiceName, setIsEditingServiceName] = useState(false)
   const [isEditingSubdivisionName, setIsEditingSubdivisionName] = useState(false)
@@ -682,7 +684,7 @@ const MotorGroup: React.FC<MotorGroupProps> = ({
             />
           ))}
           {(onAddGroupClick || onDuplicatePosition || onDeletePosition || onSaveAsTemplate) && (
-            <div className="mt-4 pl-3 flex items-center gap-4">
+            <div className="mt-4 pl-3 flex items-center gap-4 flex-wrap">
               {onAddGroupClick && (
                 <button
                   onClick={onAddGroupClick}
@@ -722,6 +724,14 @@ const MotorGroup: React.FC<MotorGroupProps> = ({
                   Сохранить как шаблон
                 </button>
               )}
+              <button
+                onClick={() => navigate(`/app/motors/${motor.id}`)}
+                className="flex items-center gap-2 text-sm text-purple-600 hover:text-purple-700 font-medium transition-colors py-2"
+                title="Просмотр и QR-код"
+              >
+                <QrCode size={16} />
+                Просмотр и QR-код
+              </button>
             </div>
           )}
         </div>
